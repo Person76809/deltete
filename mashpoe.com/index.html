@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<!--[if lt IE 9 ]> <html lang="en" class="ie8">    <![endif]-->
+<!--[if (gt IE 8)|!(IE)]><!-->
+<html lang="en">
+<!--<![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta charset="utf-8">
+<meta name="google-site-verification" content="Ztb5m51I0hSoKoDtuy7zRjkKW7pAzN_4W1mHR80xVH8" />
+<meta name="msvalidate.01" content="B02FEF2882FF1ABD8B20CD42A45CB7DD" />
+<link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+<link href="assets/stylesheets/mashpoe.css" rel="stylesheet">
+
+<meta name="description" content="I'm a programmer who does stuff!">
+<title>The Official Mashpoe Website.</title>
+</head>
+
+<body>
+	<div id="navbar" style="display: block;">
+		<div class="navbar-item" id="navbarAbout" style="display: none;">
+			<a class="content" href="about.html" onclick="handleParentLink(event)">About</a>
+		</div>
+		<div class="navbar-item" id="navbarContact" style="display: none;">
+			<a class="content" href="contact.html" onclick="handleParentLink(event)">Contact</a>
+		</div>
+		<div class="navbar-item home-icon" id="navbarHome">
+			<a class="content" href="index.html" onclick="handleParentLink(event)"></a>
+		</div>
+		<div class="navbar-item random-icon">
+			<a class="content" href="javascript:void(0);" onclick="loadRandomPage()">
+				random page
+			</a>
+		</div>
+		<div class="navbar-item responsive-icon">
+			<a class="content" href="javascript:void(0);" onclick="responsive()"></a>
+		</div>
+		<div class="navbar-item search-item">
+			<div class="search-container" onclick="document.getElementById('search').focus()">
+				<input type="text" id="search" class="search" autocomplete="off" placeholder="search">
+			</div>
+		</div>
+	</div>
+
+	<div id="frameContainer">
+	</div>
+	<script src="assets/scripts/compatibility.js"></script>
+	<script src="assets/scripts/search.js"></script>
+	<script src="assets/scripts/pageManager.js"></script>
+	<script>
+		function responsive() {
+			document.getElementById("navbar").classList.toggle("responsive");
+		}
+
+		function loadRandomPage() {
+			var xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = function () {
+				if (this.readyState == 4 && this.status == 200) {
+					setURL(window.location.protocol + "//" + window.location.hostname +
+						"/" + this.responseText);
+				}
+			}
+			xhr.open("POST", "https://mashpoe.com/assets/scripts/pages.php?command=random", true);
+			xhr.send();
+		}
+	</script>
+</body>
+
+</html>
